@@ -48,13 +48,14 @@ public class FillCup : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "WaterGirl" && !waterIn)
+        Debug.Log(other.tag + " Left the cup");
+        if (other.tag == "WaterGirl" && waterIn)
         {
             waterIn = false;
             waterGirlRenderer.enabled = true;
             updateSprite();
         }
-        if (other.tag == "TeaBoy" && !teaIn)
+        if (other.tag == "TeaBoy" && teaIn)
         {
             teaIn = false;
             teaBoyRenderer.enabled = true;
