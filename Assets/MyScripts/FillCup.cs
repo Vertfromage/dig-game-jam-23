@@ -7,6 +7,7 @@ public class FillCup : MonoBehaviour
     public Sprite filledSprite;
     public Sprite waterSprite;
     public Sprite teaSprite;
+    public Sprite emptySprite;
 
     public SpriteRenderer teaBoyRenderer;
     public SpriteRenderer waterGirlRenderer;
@@ -25,11 +26,6 @@ public class FillCup : MonoBehaviour
     void Update()
     {
 
-        if (teaMade)
-        {
-            GetComponent<SpriteRenderer>().sprite = filledSprite;
-        }
-        // go to new scene after timer
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,6 +43,8 @@ public class FillCup : MonoBehaviour
             updateSprite();
         }
     }
+
+    // Doesn't work...
 
     private void OnTriggerExit(Collider other)
     {
@@ -69,6 +67,7 @@ public class FillCup : MonoBehaviour
         if (teaIn && waterIn)
         {
             GetComponent<SpriteRenderer>().sprite = filledSprite;
+            // go to new scene after timer
         }
         else if (waterIn)
         {
@@ -77,6 +76,10 @@ public class FillCup : MonoBehaviour
         else if (teaIn)
         {
             GetComponent<SpriteRenderer>().sprite = teaSprite;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = emptySprite;
         }
     }
 }
