@@ -4,7 +4,7 @@ using System.Collections;
 //Follows the player along the 2d plane, using a continuous lerp
 //--------------------------------------------------------------------
 public class BasicCameraTracker : MonoBehaviour {
-    [SerializeField] GameObject m_Target = null;
+    public GameObject m_Target = null;
     [SerializeField] float m_InterpolationFactor = 0.0f;
     [SerializeField] bool m_UseFixedUpdate = false;
     [SerializeField] float m_ZDistance = 10.0f;

@@ -6,17 +6,17 @@ public class GameControl : MonoBehaviour
 {
     public PlayerInput teaInput;
     public PlayerInput waterInput;
-    //GameObject teaBoy;
-    //GameObject waterGirl;
+    public GameObject teaBoy;
+    public GameObject waterGirl;
 
-    //public BasicCameraTracker cameraTracker;
+    public BasicCameraTracker cameraTracker;
 
     private bool activePlayerTea;
 
     // Start is called before the first frame update
     void Start()
     {
-        activePlayerTea = false;        
+        activePlayerTea = true;        
     }
 
     // Update is called once per frame
@@ -31,12 +31,14 @@ public class GameControl : MonoBehaviour
                 // switch to water
                 waterInput.enabled = true;
                 teaInput.enabled = false;
+                cameraTracker.m_Target = waterGirl;
             }
             else
             {
                 // switch to tea
                 waterInput.enabled = false;
                 teaInput.enabled = true;
+                cameraTracker.m_Target = teaBoy;
             }
             activePlayerTea = !activePlayerTea;
         }

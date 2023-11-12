@@ -14,6 +14,7 @@ public class FillCup : MonoBehaviour
 
     private bool waterIn;
     private bool teaIn;
+    private bool sugar;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,10 @@ public class FillCup : MonoBehaviour
         Debug.Log(other.tag + " Left the cup");
         if (other.tag == "WaterGirl" && waterIn)
         {
+            if (other.gameObject.GetComponent<Pocket>().sugar > 0)
+            {
+                sugar = true;
+            }
             waterIn = false;
             waterGirlRenderer.enabled = true;
             updateSprite();
@@ -68,7 +73,14 @@ public class FillCup : MonoBehaviour
         if (teaIn && waterIn)
         {
             GetComponent<SpriteRenderer>().sprite = filledSprite;
-            // go to new scene after timer
+            
+            if (sugar)
+            {
+                Debug.Log("Sugar In!");
+                // Print you beat game 
+                // go to new scene after timer
+            }
+
         }
         else if (waterIn)
         {
