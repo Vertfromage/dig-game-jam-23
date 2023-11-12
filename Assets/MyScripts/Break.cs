@@ -15,7 +15,11 @@ public class Break : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (broken)
+        {
+            GetComponent<Thrower>().ThrowObject();
+            broken = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +29,11 @@ public class Break : MonoBehaviour
         {
             broken = true;
             GetComponent<SpriteRenderer>().sprite = BrokenSprite;
-            GetComponent<Thrower>().ThrowObject();
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log(other.tag+" left jar");
     }
 }

@@ -21,6 +21,7 @@ public class FillCup : MonoBehaviour
     {
         waterIn = false;
         teaIn = false;
+        sugar = false;
     }
 
     // Update is called once per frame
@@ -31,6 +32,7 @@ public class FillCup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.tag + " Entered the cup");
         if (other.tag == "WaterGirl" && !waterIn)
         {
             waterIn = true;
@@ -47,31 +49,32 @@ public class FillCup : MonoBehaviour
 
     // Doesn't work...
 
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log(other.tag + " Left the cup");
-        if (other.tag == "WaterGirl" && waterIn)
-        {
-            if (other.gameObject.GetComponent<Pocket>().sugar > 0)
-            {
-                sugar = true;
-            }
-            waterIn = false;
-            waterGirlRenderer.enabled = true;
-            updateSprite();
-        }
-        if (other.tag == "TeaBoy" && teaIn)
-        {
-            teaIn = false;
-            teaBoyRenderer.enabled = true;
-            updateSprite();
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    Debug.Log(other.tag + " Left the cup");
+    //    if (other.tag == "WaterGirl" && !waterIn)
+    //    {
+    //        if (other.gameObject.GetComponent<Pocket>().sugar > 0)
+    //        {
+    //            sugar = true;
+    //        }
+    //        waterIn = false;
+    //        waterGirlRenderer.enabled = true;
+    //        updateSprite();
+    //    }
+    //    if (other.tag == "TeaBoy" && teaIn)
+    //    {
+    //        teaIn = false;
+    //        teaBoyRenderer.enabled = true;
+    //        updateSprite();
+    //    }
+    //}
 
     void updateSprite()
     {
         if (teaIn && waterIn)
         {
+            Debug.Log("Sugar In!");
             GetComponent<SpriteRenderer>().sprite = filledSprite;
             
             if (sugar)

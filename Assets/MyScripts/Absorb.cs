@@ -19,12 +19,17 @@ public class Absorb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
+        Debug.Log(other.tag+" enter Sugar");
         if (other.tag == "WaterGirl" && !absorbed)
         {
             absorbed = true;
             other.gameObject.GetComponent<Pocket>().sugar++;
-            Destroy(this);            
+            Destroy(this.gameObject);            
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log(other.tag + " left sugar");
     }
 }
